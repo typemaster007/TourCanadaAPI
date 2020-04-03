@@ -25,6 +25,7 @@ def make_payment():
         date = request.form.get('date')
         uid = random.randint(1, 1000000)
         table = dynamodb.Table('bookings')
+        print(request.form)
         items = {
             'id': uid,
             'user_id': user_id,
@@ -40,6 +41,7 @@ def make_payment():
         uploadImgS3(username, date_img)
         img_url = getUrlQRCode(username, date_img)
         items['img_url'] = img_url
+        print(items)
         response = table.put_item(
             Item=items
         )
