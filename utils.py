@@ -7,6 +7,7 @@ from botocore.exceptions import NoCredentialsError
 from flask import jsonify
 import base64
 import requests
+from boto3.s3.transfer import S3Transfer
 s3 = boto3.client('s3')
 
 
@@ -92,13 +93,21 @@ def generateQRCode(data):
 
 
 def uploadImgS3(username, date):
+    ACCESS_KEY = "ASIARZHIQNDRP5WOFL5J"
+    SECRET_KEY = "+bR5loo5gQS35+dY8pPWDXqIF5fS+KV0zkK3Kn/M"
+    SESSION_TOKEN = 'FwoGZXIvYXdzEG8aDCNRPuLS+XCCFGCx1yK+AegbhV1BW0Ar5D9xeqvFi0XJu0CtICtL/N5NEDKQH7q3ZW/iqry/g6RwAbkiy6NqLvqKWYaHfr9pjuR0D7XtgzOfLeK52daR9yTTzRK5lzPWwVMxl0C4Ve6a4SpQ1rBgjDlySr6eBI6ZEN404IiM0nSh/8KmTDIrZz07ssEzccPLBA1GftQS7CJ9Y4ec6r4OH6giTbXYpyX2pChU4sHVhRsj9ae7ygGj5v2Y1denQ9BgpJrU5Tea2J5uRNYTbB4o6tme9AUyLR9nKd5FbaNE0YqmNAJY9kCSUWn2wTfwkPFAqCWk3qQ1sl/fsKS0DS9yf0fz0A=='
+    client = boto3.client(
+        's3',
+        aws_access_key_id=ACCESS_KEY,
+        aws_secret_access_key=SECRET_KEY,
+        aws_session_token=SESSION_TOKEN,
+    )
+    transfer = S3Transfer(client)
     filename = 'qrcodes/temp.png'
     bucket = "www.tourcanada.ca"
     print(date)
-    # date = date.split('-')
-    # date = '_'.join(date)
     s3filename = "users/{}/ticket_{}.png".format(username, date)
-    upload_to_aws(filename, bucket, s3filename)
+    transfer.upload_file(filename, bucket, s3filename)
     os.remove(filename)
 
 def get_as_base64(url):
@@ -107,8 +116,17 @@ def get_as_base64(url):
 def getUrlQRCode(username, date):
     # date = date.split('-')
     # date = '_'.join(date)
+    ACCESS_KEY = "ASIARZHIQNDRP5WOFL5J"
+    SECRET_KEY = "+bR5loo5gQS35+dY8pPWDXqIF5fS+KV0zkK3Kn/M"
+    SESSION_TOKEN = 'FwoGZXIvYXdzEG8aDCNRPuLS+XCCFGCx1yK+AegbhV1BW0Ar5D9xeqvFi0XJu0CtICtL/N5NEDKQH7q3ZW/iqry/g6RwAbkiy6NqLvqKWYaHfr9pjuR0D7XtgzOfLeK52daR9yTTzRK5lzPWwVMxl0C4Ve6a4SpQ1rBgjDlySr6eBI6ZEN404IiM0nSh/8KmTDIrZz07ssEzccPLBA1GftQS7CJ9Y4ec6r4OH6giTbXYpyX2pChU4sHVhRsj9ae7ygGj5v2Y1denQ9BgpJrU5Tea2J5uRNYTbB4o6tme9AUyLR9nKd5FbaNE0YqmNAJY9kCSUWn2wTfwkPFAqCWk3qQ1sl/fsKS0DS9yf0fz0A=='
+    client = boto3.client(
+        's3',
+        aws_access_key_id=ACCESS_KEY,
+        aws_secret_access_key=SECRET_KEY,
+        aws_session_token=SESSION_TOKEN,
+    )
     s3filename = "users/{}/ticket_{}.png".format(username, date)
-    url = s3.generate_presigned_url(
+    url = client.generate_presigned_url(
         ClientMethod='get_object',
         Params={
             'Bucket': 'www.tourcanada.ca',
