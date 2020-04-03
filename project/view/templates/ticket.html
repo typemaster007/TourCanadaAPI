@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ticketstyle.css') }}">
+
+    {% if title %}
+        <title>Travel App - {{ title }}</title>
+    {% else %}
+        <title>Travel App</title>
+    {% endif %}
+</head>
+<body>
+<section class="container">
+<h1>Booking orders</h1>
+  <div class="row">
+    <article class="card fl-left">
+      <section class="date">
+        <time datetime="23th feb">
+          <span>{{ value3 }}</span><span>{{ value }}</span>
+        </time>
+      </section>
+      <section class="card-cont">
+        <small></small>
+        <h3>Melbourne</h3>
+        <div class="even-date">
+         <i class="fa fa-calendar"></i>
+         <time>
+           <span>{{ val4 }}</span>
+           <span>{{ timeval}}</span>
+         </time>
+        </div>
+        <div class="even-info">
+          <i class="fa fa-map-marker"></i>
+          <p>
+            Sydney, Australia
+          </p>
+		  
+        </div>
+        <a href="#">Download</a>
+      </section>
+    </article>
+    
+  </div>
+
+</body>
+</html>
