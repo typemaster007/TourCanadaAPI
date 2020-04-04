@@ -89,13 +89,13 @@ def createResponse(status_value, code, message, result={}):
 
 def generateQRCode(data):
     data = pyqrcode.create(data)
-    data.png('qrcodes/temp.png', scale=3)
+    data.png('temp.png', scale=3)
 
 
 def uploadImgS3(username, date):
-    ACCESS_KEY = "ASIARZHIQNDRP5WOFL5J"
-    SECRET_KEY = "+bR5loo5gQS35+dY8pPWDXqIF5fS+KV0zkK3Kn/M"
-    SESSION_TOKEN = 'FwoGZXIvYXdzEG8aDCNRPuLS+XCCFGCx1yK+AegbhV1BW0Ar5D9xeqvFi0XJu0CtICtL/N5NEDKQH7q3ZW/iqry/g6RwAbkiy6NqLvqKWYaHfr9pjuR0D7XtgzOfLeK52daR9yTTzRK5lzPWwVMxl0C4Ve6a4SpQ1rBgjDlySr6eBI6ZEN404IiM0nSh/8KmTDIrZz07ssEzccPLBA1GftQS7CJ9Y4ec6r4OH6giTbXYpyX2pChU4sHVhRsj9ae7ygGj5v2Y1denQ9BgpJrU5Tea2J5uRNYTbB4o6tme9AUyLR9nKd5FbaNE0YqmNAJY9kCSUWn2wTfwkPFAqCWk3qQ1sl/fsKS0DS9yf0fz0A=='
+    ACCESS_KEY = "ASIARZHIQNDROJIWHL4N"
+    SECRET_KEY = "QAHRr1u+Tz9tF/4d3eeWxpxUwEhF80AOoeaotvVu"
+    SESSION_TOKEN = 'FwoGZXIvYXdzEHIaDEGTRUlGhCsImY9C/yK+AeAIQamPVUS+yVwA4vxxUPYlWpeRUSjh4cGYMWNNElYTD+qoZzTvK8qcqAiJWHNMLDFRBxPF9K36du36CDm1BqqmsKw7BXTy9FCK6Bs8pzXpgOVQfzIefrgNfQVzAbk12FI7tJznVJVet90w/nSwwarOdtFR2NKQOAWM77QfDBzUtqlvC+NvyE8DnAX4Yy859MHC1y7qyejelfzwnRU1599BKQQdLA5TV7UveZbncevTSGpK6X4Gz7Tku8SIH8go7rCf9AUyLcnAUiC0SsMtyMR4xZuHdrlY4m2z2kfwMhsSpy+frwyF6SFgXSw6hHhVtGEmaQ=='
     client = boto3.client(
         's3',
         aws_access_key_id=ACCESS_KEY,
@@ -103,7 +103,7 @@ def uploadImgS3(username, date):
         aws_session_token=SESSION_TOKEN,
     )
     transfer = S3Transfer(client)
-    filename = 'qrcodes/temp.png'
+    filename = 'temp.png'
     bucket = "www.tourcanada.ca"
     print(date)
     s3filename = "users/{}/ticket_{}.png".format(username, date)
@@ -116,9 +116,9 @@ def get_as_base64(url):
 def getUrlQRCode(username, date):
     # date = date.split('-')
     # date = '_'.join(date)
-    ACCESS_KEY = "ASIARZHIQNDRP5WOFL5J"
-    SECRET_KEY = "+bR5loo5gQS35+dY8pPWDXqIF5fS+KV0zkK3Kn/M"
-    SESSION_TOKEN = 'FwoGZXIvYXdzEG8aDCNRPuLS+XCCFGCx1yK+AegbhV1BW0Ar5D9xeqvFi0XJu0CtICtL/N5NEDKQH7q3ZW/iqry/g6RwAbkiy6NqLvqKWYaHfr9pjuR0D7XtgzOfLeK52daR9yTTzRK5lzPWwVMxl0C4Ve6a4SpQ1rBgjDlySr6eBI6ZEN404IiM0nSh/8KmTDIrZz07ssEzccPLBA1GftQS7CJ9Y4ec6r4OH6giTbXYpyX2pChU4sHVhRsj9ae7ygGj5v2Y1denQ9BgpJrU5Tea2J5uRNYTbB4o6tme9AUyLR9nKd5FbaNE0YqmNAJY9kCSUWn2wTfwkPFAqCWk3qQ1sl/fsKS0DS9yf0fz0A=='
+    ACCESS_KEY = "ASIARZHIQNDROJIWHL4N"
+    SECRET_KEY = "QAHRr1u+Tz9tF/4d3eeWxpxUwEhF80AOoeaotvVu"
+    SESSION_TOKEN = 'FwoGZXIvYXdzEHIaDEGTRUlGhCsImY9C/yK+AeAIQamPVUS+yVwA4vxxUPYlWpeRUSjh4cGYMWNNElYTD+qoZzTvK8qcqAiJWHNMLDFRBxPF9K36du36CDm1BqqmsKw7BXTy9FCK6Bs8pzXpgOVQfzIefrgNfQVzAbk12FI7tJznVJVet90w/nSwwarOdtFR2NKQOAWM77QfDBzUtqlvC+NvyE8DnAX4Yy859MHC1y7qyejelfzwnRU1599BKQQdLA5TV7UveZbncevTSGpK6X4Gz7Tku8SIH8go7rCf9AUyLcnAUiC0SsMtyMR4xZuHdrlY4m2z2kfwMhsSpy+frwyF6SFgXSw6hHhVtGEmaQ=='
     client = boto3.client(
         's3',
         aws_access_key_id=ACCESS_KEY,
