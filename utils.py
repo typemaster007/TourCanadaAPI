@@ -124,6 +124,7 @@ def getUrlQRCode(username, date):
         's3',
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY
+
     )
     s3filename = "users/{}/ticket_{}.png".format(username, date)
     url = client.generate_presigned_url(
