@@ -77,7 +77,7 @@ function register() {
     'email': email
   };
   var resp = $.ajax({
-    url: 'http://127.0.0.1:5000/register',
+    url: 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/register',
     data: data,
     dataType: 'json',
     type: 'POST',

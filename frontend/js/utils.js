@@ -71,7 +71,7 @@ function getUserDetails(username) {
     'username': username
   };
   var method = 'GET';
-  var url = 'http://127.0.0.1:5000/getUserDetails';
+  var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/getUserDetails';
   var resp = makeRequest(url, data);
   if (resp['status']) {
     resp = resp['result'];
@@ -94,7 +94,7 @@ function getDestinations(location) {
 }
 
 function getTrendingLocations(username) {
-  var url = 'http://127.0.0.1:5000/getTrendingLocations';
+  var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/getTrendingLocations';
   var data = {};
   var method = 'GET';
   var resp = makeRequest(url, data, method);
@@ -146,7 +146,7 @@ function redirectPayment() {
 
 function getSearchResults() {
   var location = getCookie('location');
-  var url = 'http://127.0.0.1:5000/destinations';
+  var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/destinations';
   var data = {
     'location': location
   };
@@ -265,7 +265,7 @@ function makePayment() {
     'date': date
   };
   var method = 'POST';
-  var url = 'http://127.0.0.1:5000/make_payment';
+  var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/make_payment';
   var resp = makeRequest(url, data, method);
   console.log(resp);
   if (resp['status']) {
@@ -329,7 +329,7 @@ function loadTicketContent() {
     'user_id': user_id
   };
   var method = 'GET';
-  var url = 'http://127.0.0.1:5000/get_image_url';
+  var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/get_image_url';
   var resp = makeRequest(url, data, method);
   var img_url = resp['result']['img_url'];
 
@@ -359,7 +359,7 @@ function loadMyBookings() {
     'user_id': user_id
   };
   var method = 'GET';
-  var url = 'http://127.0.0.1:5000/get_my_bookings';
+  var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/get_my_bookings';
   var resp = makeRequest(url, data, method);
   console.log(resp);
   // var result=resp['result'];
