@@ -8,6 +8,7 @@ from flask import jsonify
 import base64
 import requests
 from boto3.s3.transfer import S3Transfer
+import json
 s3 = boto3.client('s3')
 
 
@@ -82,6 +83,7 @@ def createResponse(status_value, code, message, result={}):
         'message': message,
         'result': result
     }
+    print(json.dumps(resp, indent=2))
     resp = jsonify(resp)
     resp.headers.add('Access-Control-Allow-Origin', '*')
     return resp
