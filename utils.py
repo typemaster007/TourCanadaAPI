@@ -76,12 +76,14 @@ def createNested(obj):
     return finalTrends
 
 
-def createResponse(status_value, code, message, result={}):
+def createResponse(status_value, code, message, result=None):
+    if result is None:
+        result = {}
     resp = {
         'status': status_value,
         'code': code,
         'message': message,
-        'result': result
+        'result': result,
         'version': 'v3'
     }
     print(json.dumps(resp, indent=2))
