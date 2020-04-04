@@ -324,7 +324,7 @@ function loadTicketContent() {
   var uid = getCookie('uid');
   var email = getCookie('email');
   var ticketCount = getCookie('ticketCount');
-  var user_id = getCookie('user_id')
+  var user_id = getCookie('user_id');
   var data = {
     'user_id': user_id
   };

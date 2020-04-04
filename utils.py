@@ -95,18 +95,17 @@ def generateQRCode(data):
 
 
 def uploadImgS3(username, date):
-    ACCESS_KEY = "ASIARZHIQNDROJIWHL4N"
-    SECRET_KEY = "QAHRr1u+Tz9tF/4d3eeWxpxUwEhF80AOoeaotvVu"
-    SESSION_TOKEN = 'FwoGZXIvYXdzEHIaDEGTRUlGhCsImY9C/yK+AeAIQamPVUS+yVwA4vxxUPYlWpeRUSjh4cGYMWNNElYTD+qoZzTvK8qcqAiJWHNMLDFRBxPF9K36du36CDm1BqqmsKw7BXTy9FCK6Bs8pzXpgOVQfzIefrgNfQVzAbk12FI7tJznVJVet90w/nSwwarOdtFR2NKQOAWM77QfDBzUtqlvC+NvyE8DnAX4Yy859MHC1y7qyejelfzwnRU1599BKQQdLA5TV7UveZbncevTSGpK6X4Gz7Tku8SIH8go7rCf9AUyLcnAUiC0SsMtyMR4xZuHdrlY4m2z2kfwMhsSpy+frwyF6SFgXSw6hHhVtGEmaQ=='
+    ACCESS_KEY = "AKIAIKVNKWWXZIWHCZVQ"
+    SECRET_KEY = "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"
+    # SESSION_TOKEN = 'FwoGZXIvYXdzEHIaDEGTRUlGhCsImY9C/yK+AeAIQamPVUS+yVwA4vxxUPYlWpeRUSjh4cGYMWNNElYTD+qoZzTvK8qcqAiJWHNMLDFRBxPF9K36du36CDm1BqqmsKw7BXTy9FCK6Bs8pzXpgOVQfzIefrgNfQVzAbk12FI7tJznVJVet90w/nSwwarOdtFR2NKQOAWM77QfDBzUtqlvC+NvyE8DnAX4Yy859MHC1y7qyejelfzwnRU1599BKQQdLA5TV7UveZbncevTSGpK6X4Gz7Tku8SIH8go7rCf9AUyLcnAUiC0SsMtyMR4xZuHdrlY4m2z2kfwMhsSpy+frwyF6SFgXSw6hHhVtGEmaQ=='
     client = boto3.client(
         's3',
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
-        aws_session_token=SESSION_TOKEN,
     )
     transfer = S3Transfer(client)
     filename = 'temp.png'
-    bucket = "www.tourcanada.ca"
+    bucket = "qrcodes-tourcanada"
     print(date)
     s3filename = "users/{}/ticket_{}.png".format(username, date)
     transfer.upload_file(filename, bucket, s3filename)
@@ -118,20 +117,19 @@ def get_as_base64(url):
 def getUrlQRCode(username, date):
     # date = date.split('-')
     # date = '_'.join(date)
-    ACCESS_KEY = "ASIARZHIQNDROJIWHL4N"
-    SECRET_KEY = "QAHRr1u+Tz9tF/4d3eeWxpxUwEhF80AOoeaotvVu"
-    SESSION_TOKEN = 'FwoGZXIvYXdzEHIaDEGTRUlGhCsImY9C/yK+AeAIQamPVUS+yVwA4vxxUPYlWpeRUSjh4cGYMWNNElYTD+qoZzTvK8qcqAiJWHNMLDFRBxPF9K36du36CDm1BqqmsKw7BXTy9FCK6Bs8pzXpgOVQfzIefrgNfQVzAbk12FI7tJznVJVet90w/nSwwarOdtFR2NKQOAWM77QfDBzUtqlvC+NvyE8DnAX4Yy859MHC1y7qyejelfzwnRU1599BKQQdLA5TV7UveZbncevTSGpK6X4Gz7Tku8SIH8go7rCf9AUyLcnAUiC0SsMtyMR4xZuHdrlY4m2z2kfwMhsSpy+frwyF6SFgXSw6hHhVtGEmaQ=='
+    ACCESS_KEY = "AKIAIKVNKWWXZIWHCZVQ"
+    SECRET_KEY = "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"
+    # SESSION_TOKEN = 'FwoGZXIvYXdzEHIaDEGTRUlGhCsImY9C/yK+AeAIQamPVUS+yVwA4vxxUPYlWpeRUSjh4cGYMWNNElYTD+qoZzTvK8qcqAiJWHNMLDFRBxPF9K36du36CDm1BqqmsKw7BXTy9FCK6Bs8pzXpgOVQfzIefrgNfQVzAbk12FI7tJznVJVet90w/nSwwarOdtFR2NKQOAWM77QfDBzUtqlvC+NvyE8DnAX4Yy859MHC1y7qyejelfzwnRU1599BKQQdLA5TV7UveZbncevTSGpK6X4Gz7Tku8SIH8go7rCf9AUyLcnAUiC0SsMtyMR4xZuHdrlY4m2z2kfwMhsSpy+frwyF6SFgXSw6hHhVtGEmaQ=='
     client = boto3.client(
         's3',
         aws_access_key_id=ACCESS_KEY,
-        aws_secret_access_key=SECRET_KEY,
-        aws_session_token=SESSION_TOKEN,
+        aws_secret_access_key=SECRET_KEY
     )
     s3filename = "users/{}/ticket_{}.png".format(username, date)
     url = client.generate_presigned_url(
         ClientMethod='get_object',
         Params={
-            'Bucket': 'www.tourcanada.ca',
+            'Bucket': 'qrcodes-tourcanada',
             'Key': s3filename
         }
     )
@@ -155,4 +153,5 @@ if __name__ == '__main__':
         }
 
     ]
-    generateQRCode(json.dumps(obj))
+    # generateQRCode(json.dumps(obj))
+    uploadImgS3('daksh2298','123')
