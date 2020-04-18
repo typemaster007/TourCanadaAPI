@@ -27,21 +27,21 @@ hosted on Elastic Beanstalk are not HTTPS certified.
 API endpoints for Tour Canada.
 
 ```
-<b>Endpoint</b>: <b>register</b>
-Type: <b>POST</b>
-Parameters: <b>username, name, email</b>
-On success response: <b>{
+Endpoint: /register
+Type: POST
+Parameters: username, name, email
+On success response: {
     'status': True,
     'code': 200,
     'message': “Success message”,
     'result': {}
-}</b>
+}
 ```
 ```
-<b>Endpoint</b>: <b>/getUserDetails<b>
-<b>Type<b>: <b>GET<b>
-<b>Parameters<b>: <b>username<b>
-<b>On success response<b>: {
+<b>Endpoint: /getUserDetails
+Type: GET
+Parameters: username
+On success response: {
     “status”: True,
     “code”: 200,
     'message': “Success message”,
@@ -53,10 +53,10 @@ On success response: <b>{
 }
 ``` 
 ```
-<b>Endpoint</b>: <b>/getTrendingLocations<b>
-<b>Type<b>: <b>GET<b>
-<b>Parameters<b>: <b>N/A<b>
-<b>On success response<b>: {
+<b>Endpoint</b>: /getTrendingLocations
+Type: GET
+Parameters: N/A
+On success response: {
   "status": true,
   "code": 200,
   "message": "Trending locations fetched successfully",
@@ -94,10 +94,10 @@ On success response: <b>{
 Note: In results, there is a 2-D list (where inner one is of length 3) which contains dictionary of search results for location.
 ```
 ```
-<b>Endpoint</b>: <b>/destinations<b>
-<b>Type<b>: <b>GET<b>
-<b>Parameters<b>: <b>location (eg: halifax)<b>
-<b>On success response<b>: {
+<b>Endpoint</b>: /destinations
+Type: GET
+Parameters: location (eg: halifax)
+On success response: {
   "status": true,
   "code": 200,
   "message": "Trending locations fetched successfully",
@@ -121,10 +121,10 @@ Note: In results, there is a 2-D list (where inner one is of length 3) which con
 Note: In results, there is a 2-D list( where inner one is of length 3) which contains dictionary of search results for location.
 ```
 ```
-<b>Endpoint</b>: <b>/make_payment</b>
-<b>Type<b>: <b>POST<b>
-<b>Parameters<b>: <b>user_id, username, location, place, numTickets, amount, date<b>
-<b>On success response<b>: {
+<b>Endpoint</b>: /make_payment</b>
+Type: POST
+Parameters: user_id, username, location, place, numTickets, amount, date
+On success response: {
   "status": true,
   "code": 200,
   "message": "Booking inserted successfully!",
@@ -134,10 +134,10 @@ Note: In results, there is a 2-D list( where inner one is of length 3) which con
 }
 ```
 ```
-<b>Endpoint</b>: <b>/get_image_url<b>
-<b>Type<b>: <b>GET<b>
-<b>Parameters<b>: <b>username<b>
-<b>On success response<b>: {
+<b>Endpoint</b>: /get_image_url
+Type: GET
+Parameters: username
+On success response: {
     "status": true,
     "code": 200,
     "message": "Image fetched successfully!",
@@ -149,10 +149,10 @@ Note: In results, there is a 2-D list( where inner one is of length 3) which con
 }
 ```
 ```
-<b>Endpoint</b>: <b>/get_my_bookings<b>
-<b>Type<b>: <b>GET<b>
-<b>Parameters<b>: <b>username<b>
-<b>On success response<b>: {
+<b>Endpoint</b>: /get_my_bookings
+Type: GET
+Parameters: username
+On success response: {
   "status": true,
   "code": 200,
   "message": "Bookings fetched Successful!",
