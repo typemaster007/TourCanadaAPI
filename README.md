@@ -28,12 +28,15 @@ API endpoints for Tour Canada.
 
 | **Endpoint** | **Type** | **Parameters** | **On success response** |
 | --- | --- | --- | --- |
-| **/register** | POST | username, name, email | _{_
-&#39;status&#39;: True,
- &#39;code&#39;: 200,
- &#39;message&#39;: &quot;Success message&quot;,
- &#39;result&#39;: {}
-_}_(this endpoint does not return anything in result) |
+| **/register** | POST | username, name, email | 
+{
+    'status': True,
+    'code': 200,
+    'message': “Success message”,
+    'result': {}
+}
+(this endpoint does not return anything in result)
+ |
 | **/getUserDetails** | GET | username | _{
  &quot;_ status&quot;: True,
  &quot;code&quot;: 200,
