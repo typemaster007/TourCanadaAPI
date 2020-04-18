@@ -1,3 +1,6 @@
+// import "./amazon-cognito-identity.min";
+// import "./aws-cognito-sdk.min";
+
 function setCookie(cname, cvalue, exdays) {
   var d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -244,41 +247,73 @@ function decreaseTicketCounter() {
 
 // var img_url=null;
 function makePayment() {
-  var user_id = getCookie('user_id');
-  var username = getCookie('username');
-  var location = getCookie('location');
-  var place = getCookie('place');
-  var date = getCookie('date');
-  var numTickets = $('#ticketCount').val();
-  setCookie('ticketCount', numTickets, 1);
-  var amount = $('#totalAmount').text();
-  setCookie('amount', amount, 1);
-  numTickets = parseInt(numTickets);
-  // amount = parseInt(amount);
-  var data = {
-    'user_id': user_id,
-    'username': username,
-    'location': location,
-    'place': place,
-    'numTickets': numTickets,
-    'amount': amount,
-    'date': date
-  };
-  var method = 'POST';
-  var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/make_payment';
-  var resp = makeRequest(url, data, method);
-  console.log(resp);
-  if (resp['status']) {
-    var uid = resp['result']['uid'];
-    // img_url = resp['result']['img_url'];
-    setCookie('uid', uid, 1);
-    // setCookie('img_url', img_url, 1);
-    window.location.href = 'ticket_new.html'
-  } else {
-    alert('Something went wrong! \n Please try again!')
+  var cardNumber = $('#cardNumber').val();
+  var expiry_month = $('#cc-mm').val();
+  var expiry_year = $('#cc-yy').val();
+  var cvv = $('#cc-cvv').val();
+  var flag = true;
+  var message = "";
+  // console.log(cardNumber, expiry_month, expiry_year);
+  if (cardNumber !== '1111 1111 1111 1111') {
+    flag = false;
+    message = "Please enter valid card number!";
+    // alert('Please enter a valid card number');
+  } else if (!parseInt(expiry_month)) {
+    flag = false;
+    message = "Please enter valid expiry month!";
+  } else if (parseInt(expiry_month) > 12) {
+    flag = false;
+    message = "Please enter valid expiry month!";
+  } else if (!parseInt(expiry_year)) {
+    flag = false;
+    message = "Please enter valid expiry month!";
+  } else if (parseInt(expiry_year) < 20) {
+    flag = false;
+    message = "Please enter valid expiry year!";
+  } else if (!parseInt(cvv)) {
+    flag = false;
+    message = "Please enter valid CVV!";
   }
-
+  if (!flag) {
+    alert(message);
+    return false;
+  } else {
+    var user_id = getCookie('user_id');
+    var username = getCookie('username');
+    var location = getCookie('location');
+    var place = getCookie('place');
+    var date = getCookie('date');
+    var numTickets = $('#ticketCount').val();
+    setCookie('ticketCount', numTickets, 1);
+    var amount = $('#totalAmount').text();
+    setCookie('amount', amount, 1);
+    numTickets = parseInt(numTickets);
+    // amount = parseInt(amount);
+    var data = {
+      'user_id': user_id,
+      'username': username,
+      'location': location,
+      'place': place,
+      'numTickets': numTickets,
+      'amount': amount,
+      'date': date
+    };
+    var method = 'POST';
+    var url = 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/make_payment';
+    var resp = makeRequest(url, data, method);
+    console.log(resp);
+    if (resp['status']) {
+      var uid = resp['result']['uid'];
+      // img_url = resp['result']['img_url'];
+      setCookie('uid', uid, 1);
+      // setCookie('img_url', img_url, 1);
+      window.location.href = 'ticket_new.html'
+    } else {
+      alert('Something went wrong! \n Please try again!')
+    }
+  }
 }
+
 
 function logout() {
   deleteCookie();
@@ -289,11 +324,9 @@ function load2FAcontent() {
   var email = getCookie('email');
   var username = getCookie('username');
   console.log('load2FA', email);
-  var msg = 'Hi,\n' +
-    '            , You need to verify the code received at ' + getCookie('email') + '\n' +
-    '            .'
-  $('#wlcmMsg').text(msg);
-  $('#code_username').val(username);
+  var msg = 'Hi,\n' + username +
+    '            , Your email is successfully verified. <a href="index.html">Click here</a> to login';
+  $('#wlcmMsg').html(msg);
 }
 
 function print() {
@@ -451,6 +484,114 @@ function loadMyBookings() {
   } else {
     alert('Something went wrong! Please try again later!');
   }
+}
 
+function checkToken() {
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var auth_token = url.searchParams.get("auth_token");
+  var username = url.searchParams.get("username");
+  console.log(auth_token);
+  console.log(username);
+  if (auth_token && username) {
 
+    var data = {
+      'username': username,
+      'auth_token': auth_token
+    };
+    var resp = makeRequest('http://18.207.227.150:5000/verify_account', data, 'POST');
+    if (resp['code'] === 200) {
+      alert('Successfully verified!');
+    } else {
+      alert('Something went wrong!\n Please try again..');
+      window.location.href = "index.html";
+    }
+  } else {
+    alert('Something went wrong!\n Please try again..');
+    window.location.href = "index.html";
+  }
+}
+
+function register() {
+  var fname = $('#registration_fname').val();
+  var lname = $('#registration_lname').val();
+  var email = $('#registration_email').val();
+  var username = $('#registration_username').val();
+  var password = $('#registration_password').val();
+  var cpassword = $('#registration_cpassword').val();
+  if (password.localeCompare(cpassword) != 0) {
+    alert('Confirm Password and password did not matched');
+    return;
+  }
+  var data = {
+    'fname': fname,
+    'lname': lname,
+    'name': fname + ' ' + lname,
+    'email': email,
+    'username': username,
+    'password': password
+  };
+  var resp = makeRequest('http://18.207.227.150:5000/register', data, 'POST');
+  if (resp['code'] === 200) {
+    alert(resp['message']);
+    var resp = $.ajax({
+      url: 'http://cloudproj2-env.us-east-1.elasticbeanstalk.com/register',
+      data: data,
+      dataType: 'json',
+      type: 'POST',
+      async: false,
+      beforeSend: function (x) {
+        if (x && x.overrideMimeType) {
+          x.overrideMimeType("application/j-son;charset=UTF-8");
+        }
+      },
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (error) {
+      }
+    });
+
+    var final = resp.responseJSON;
+    console.log(final);
+    if (final['status']) {
+      console.log(final['message']);
+      setCookie('username', username, 1);
+      setCookie('email', email, 1)
+    }
+    window.location.href = "index.html";
+  } else if (res['code'] === 400) {
+    alert(resp['message']);
+    window.location.href = "index.html";
+  } else {
+    alert('Something went wrong! Please try again');
+  }
+
+}
+
+function signIn() {
+  var username = $('#sign_in_username').val();
+  var password = $('#sign_in_password').val();
+  var data = {
+    'username': username,
+    'password': password
+  };
+  var resp = makeRequest('http://18.207.227.150:5000/verify_password', data, 'POST');
+  if (resp['code'] === 200) {
+    // alert(resp['message']);
+    var sub = resp['result']['username'];
+    setCookie('username', data['username'], 1);
+    setCookie('user_id', sub, 1);
+    // alert(sub);
+    window.location.href = "home.html";
+  } else if (res['code'] === 400) {
+    alert(resp['message']);
+    window.location.href = "index.html";
+  } else if (resp['code']===401){
+    var resp = makeRequest('http://18.207.227.150:5000/resend_verification', data, 'POST');
+    alert('Email not verified!\nPlease verify you email with the link received.');
+  }
+  else {
+    alert('Something went wrong! Please try again');
+  }
 }

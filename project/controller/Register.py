@@ -11,7 +11,6 @@ def register():
     if request.method == 'POST':
         print(request.form)
         username = request.form.get('username')
-        password = request.form.get('password')
         name = request.form.get('name')
         email = request.form.get('email')
         table = dynamodb.Table('users')
@@ -19,8 +18,7 @@ def register():
             Item={
                 'username': username,
                 'name': name,
-                'email': email,
-                'password': password
+                'email': email
             }
         )
         print(response)

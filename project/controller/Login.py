@@ -1,3 +1,5 @@
+from builtins import Exception
+
 __author__ = "Daksh Patel"
 
 from flask import *

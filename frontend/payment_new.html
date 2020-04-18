@@ -209,12 +209,12 @@
                       <input type="tel" inputmode="numeric" pattern="[2-9][0-9]" minlength="2" maxlength="2"
                              class="form-control" id="cc-yy" placeholder="yy" required>
                       <div class="invalid-feedback">
-                        Expiration date required
+                        Expiration year required
                       </div>
                     </div>
                     <div class="col-md-3 mb-3">
                       <label for="cc-cvv">CVV</label>
-                      <input type="tel" inputmode="numeric" pattern="[0-9][0-9][0-9][0-9]" minlength="3" maxlength="4"
+                      <input type="tel" inputmode="numeric" pattern="[0-9][0-9][0-9][0-9]" minlength="3" maxlength="3"
                              class="form-control" id="cc-cvv" placeholder="CVV" required>
                       <!--                      <input type="text" class="form-control" id="cc-cvv" placeholder="" required>-->
                       <div class="inv/alid-feedback">
@@ -422,7 +422,8 @@
 </script>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="js/aws-cognito-sdk.min.js"></script>
+<script src="js/amazon-cognito-identity.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
