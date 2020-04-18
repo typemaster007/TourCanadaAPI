@@ -1,6 +1,9 @@
 # TourCanada
 
 > The folder "frontend" contains the code of the website's frontend.
+ 
+> The folder "2fa" contains the code of the for registration module and email verification.
+><br><small>Note: "2fa" module is independent module. To run it, follow its readMe.
 
 To run the api on localhost:
 * `clone the repo`
@@ -24,7 +27,7 @@ hosted on Elastic Beanstalk are not HTTPS certified.
  Now you can use all the functionalities of the website.
  
  
-API endpoints for Tour Canada.
+## API endpoints for Tour Canada.
 
 ```
 Endpoint: /register
