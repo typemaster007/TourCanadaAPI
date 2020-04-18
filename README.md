@@ -7,7 +7,7 @@ To run the api on localhost:
 * `cd 'TourCanada-API`
 * `python app.py`.
 
-<b>Link to website:</b> https://s3.amazonaws.com/www.tourcanada.ca/index.html
+**Link to website:** https://s3.amazonaws.com/www.tourcanada.ca/index.html
 
 ## If you are opening the above website for the first time you need to make the following changes in the browser settings(preferably Google Chrome):
 ```
