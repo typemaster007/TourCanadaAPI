@@ -7,7 +7,7 @@ To run the api on localhost:
 * `cd 'TourCanada-API`
 * `python app.py`.
 
-**Link to website:** https://s3.amazonaws.com/www.tourcanada.ca/index.html
+<b>Link to website:</b> https://s3.amazonaws.com/www.tourcanada.ca/index.html
 
 ## If you are opening the above website for the first time you need to make the following changes in the browser settings(preferably Google Chrome):
 ```
@@ -26,11 +26,11 @@ hosted on Elastic Beanstalk are not HTTPS certified.
  
 API endpoints for Tour Canada.
 
-```
-*Endpoint*: */register*
-*Type*: *POST*
-*Parameters*: *username, name, email*
-*On success response*: {
+```here
+```**```Endpoint```**```: **/register**
+**Type**: **POST**
+**Parameters**: **username, name, email**
+**On success response**: {
     'status': True,
     'code': 200,
     'message': “Success message”,
@@ -38,10 +38,10 @@ API endpoints for Tour Canada.
 }
 ```
 ```
-*Endpoint*: */getUserDetails*
-*Type*: *GET*
-*Parameters*: *username*
-*On success response*: {
+**Endpoint**: **/getUserDetails**
+**Type**: **GET**
+**Parameters**: **username**
+**On success response**: {
     “status”: True,
     “code”: 200,
     'message': “Success message”,
@@ -53,10 +53,10 @@ API endpoints for Tour Canada.
 }
 ``` 
 ```
-*Endpoint*: */getTrendingLocations*
-*Type*: *GET*
-*Parameters*: *N/A*
-*On success response*: {
+**Endpoint**: **/getTrendingLocations**
+**Type**: **GET**
+**Parameters**: **N/A**
+**On success response**: {
   "status": true,
   "code": 200,
   "message": "Trending locations fetched successfully",
@@ -94,10 +94,10 @@ API endpoints for Tour Canada.
 Note: In results, there is a 2-D list (where inner one is of length 3) which contains dictionary of search results for location.
 ```
 ```
-*Endpoint*: */destinations*
-*Type*: *GET*
-*Parameters*: *location (eg: halifax)*
-*On success response*: {
+**Endpoint**: **/destinations**
+**Type**: **GET**
+**Parameters**: **location (eg: halifax)**
+**On success response**: {
   "status": true,
   "code": 200,
   "message": "Trending locations fetched successfully",
@@ -121,10 +121,10 @@ Note: In results, there is a 2-D list (where inner one is of length 3) which con
 Note: In results, there is a 2-D list( where inner one is of length 3) which contains dictionary of search results for location.
 ```
 ```
-*Endpoint*: */make_payment*
-*Type*: *POST*
-*Parameters*: *user_id, username, location, place, numTickets, amount, date*
-*On success response*: {
+**Endpoint**: **/make_payment**
+**Type**: **POST**
+**Parameters**: **user_id, username, location, place, numTickets, amount, date**
+**On success response**: {
   "status": true,
   "code": 200,
   "message": "Booking inserted successfully!",
@@ -134,10 +134,10 @@ Note: In results, there is a 2-D list( where inner one is of length 3) which con
 }
 ```
 ```
-*Endpoint*: */get_image_url*
-*Type*: *GET*
-*Parameters*: *username*
-*On success response*: {
+**Endpoint**: **/get_image_url**
+**Type**: **GET**
+**Parameters**: **username**
+**On success response**: {
     "status": true,
     "code": 200,
     "message": "Image fetched successfully!",
@@ -149,10 +149,10 @@ Note: In results, there is a 2-D list( where inner one is of length 3) which con
 }
 ```
 ```
-*Endpoint*: */get_my_bookings*
-*Type*: *GET*
-*Parameters*: *username*
-*On success response*: {
+**Endpoint**: **/get_my_bookings**
+**Type**: **GET**
+**Parameters**: **username**
+**On success response**: {
   "status": true,
   "code": 200,
   "message": "Bookings fetched Successful!",
