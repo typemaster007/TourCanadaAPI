@@ -6,5 +6,5 @@ To run the registration api on localhost:<br>
 * `python app.py`
 
 To run it on EC2 install `(unbuntu 18.04)`:
-*Follow the steps mentioned in the file  ![mongo-docker-aws-ubuntu.txt](./mongo-docker-aws-ubuntu.txt)
+*Follow the steps mentioned in the file  [mongo-docker-aws-ubuntu.txt](./mongo-docker-aws-ubuntu.txt)
 
