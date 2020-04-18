@@ -1,0 +1,28 @@
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce
+sudo chmod 666 /var/run/docker.sock
+docker pull mongo
+docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.0.4
+docker ps
+docker exec -it mongodb bash
+mongo
+
+	use admin
+	db.createUser(
+	  {
+	    user: "daksh",
+	    pwd: "daksh2298",
+	    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+	  }
+	mongo --port 27017 -u "daksh" -p --authenticationDatabase "daksh2298"
+
+	use admin
+	db.createUser(
+	  {
+	    user: "csci5409",
+	    pwd: "group10",
+	    roles: [ { role: "readWrite", db: "tourcanada" } ]
+	  }
+	)
