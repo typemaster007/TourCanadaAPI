@@ -1,8 +1,8 @@
 # TourCanada
 
 ## Authors:
-Amogh Adithya Bangalore
-Daksh Patel
+* Amogh Adithya Bangalore
+* Daksh Patel
 
 > The folder "frontend" contains the code of the website's frontend.
  
