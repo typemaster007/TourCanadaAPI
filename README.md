@@ -1,6 +1,6 @@
 # TourCanada
 
-##Authors:
+## Authors:
 Amogh Adithya Bangalore
 Daksh Patel
 
