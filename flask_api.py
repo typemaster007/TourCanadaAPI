@@ -1,4 +1,4 @@
-__author__ = "Avinash Gazula"
+__author__ = "Amogh Adithya"
 
 import json
 import random
