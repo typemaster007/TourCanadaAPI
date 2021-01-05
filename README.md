@@ -1,5 +1,9 @@
 # TourCanada
 
+##Authors:
+Amogh Adithya Bangalore
+Daksh Patel
+
 > The folder "frontend" contains the code of the website's frontend.
  
 > The folder "2fa" contains the code of the for registration module and email verification.
